@@ -31,13 +31,18 @@ public class Controller {
             leftBound = Integer.parseInt(side.getValue().split("-")[0]);
             rightBound = Integer.parseInt(side.getValue().split("-")[1]);
             if (leftBound > rightBound) {
-                if ((requestDegree >= leftBound && requestDegree < 360) || (requestDegree >= 0 && requestDegree <= rightBound)) {
+                if ((requestDegree >= leftBound && requestDegree <= 360) || (requestDegree >= 0 && requestDegree <= rightBound)) {
                     str = side.getKey();
                 }
-            } else if (requestDegree >= leftBound && requestDegree <= rightBound) {
+            } else if (leftBound < rightBound) {
+                if (requestDegree >= leftBound && requestDegree <= rightBound) {
                     str = side.getKey();
                 }
-              else str = "Неверное значение. Введите значение градусов от 0 до 360";
+            }
+            if (requestDegree<0 || requestDegree > 360)
+            {
+                str = "Неверное значение. Введите значение градусов от 0 до 360";
+            }
         }
 
         result.put("Side", str);
